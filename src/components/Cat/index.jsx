@@ -2,7 +2,7 @@ import './styles.css';
 
 import { useState } from 'react';
 
-export const Cat = ({ cat }) => {
+export const Cat = ({ cat, handleCatDelete }) => {
   const [currentUser, setCurrentUser] = useState({});
 
   const isLiked = cat.id === currentUser.id;
@@ -15,10 +15,18 @@ export const Cat = ({ cat }) => {
     isLiked ? setCurrentUser({}) : setCurrentUser(cat);
   };
 
+  const handleDeleteClick = () => {
+    handleCatDelete(cat);
+  };
+
   return (
     <div className="cat">
       <img className="cat__photo" src={cat.urls.regular} alt={cat.user.name} />
-      <button className="cat__delete" type="button"></button>
+      <button
+        className="cat__delete"
+        type="button"
+        onClick={handleDeleteClick}
+      ></button>
       <a
         className="cat__user-instagram"
         target="blank"

@@ -23,10 +23,14 @@ export const App = () => {
 
   console.log(cats);
 
+  const handleCatDelete = (cat) => {
+    setCats((state) => state.filter((c) => c.id !== cat.id));
+  };
+
   return (
     <div className="app">
       <Header />
-      <Cats cats={cats} />
+      <Cats cats={cats} handleCatDelete={handleCatDelete} />
       <Footer />
     </div>
   );
