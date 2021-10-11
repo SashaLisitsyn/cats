@@ -1,7 +1,19 @@
 import './styles.css';
 
+import { useState } from 'react';
+
 export const Cat = ({ cat }) => {
-  const handleCatLike = () => {};
+  const [currentUser, setCurrentUser] = useState({});
+
+  const isLiked = cat.id === currentUser.id;
+
+  const catLikeButtonClassName = `cat__like ${
+    isLiked ? 'cat__like_active' : ''
+  }`;
+
+  const handleLikeClick = () => {
+    isLiked ? setCurrentUser({}) : setCurrentUser(cat);
+  };
 
   return (
     <div className="cat">
@@ -15,7 +27,10 @@ export const Cat = ({ cat }) => {
         Instagram: {cat.user.social.instagram_username}
       </a>
       <div className="cat__description">
-        <button className="cat__like" onClick={handleCatLike}></button>
+        <button
+          className={catLikeButtonClassName}
+          onClick={handleLikeClick}
+        ></button>
       </div>
     </div>
   );
