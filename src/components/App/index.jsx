@@ -3,11 +3,11 @@ import './styles.css';
 import { useEffect, useState } from 'react';
 
 import { Header } from '../Header';
-import { Cats } from '../Cats';
+import { Cards } from '../Cards';
 import { Footer } from '../Footer';
 
 export const App = () => {
-  const [cats, setCats] = useState([]);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     fetch('https://api.unsplash.com/search/photos?query=cat', {
@@ -17,20 +17,20 @@ export const App = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setCats(data.results);
+        setCards(data.results);
       });
   }, []);
 
-  console.log(cats);
+  console.log(cards);
 
-  const handleCatDelete = (cat) => {
-    setCats((state) => state.filter((c) => c.id !== cat.id));
+  const handleCardDelete = (card) => {
+    setCards((state) => state.filter((c) => c.id !== card.id));
   };
 
   return (
     <div className="app">
       <Header />
-      <Cats cats={cats} handleCatDelete={handleCatDelete} />
+      <Cards cards={cards} handleCardDelete={handleCardDelete} />
       <Footer />
     </div>
   );
