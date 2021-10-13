@@ -1,33 +1,37 @@
 import './styles.css';
 
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { fetchCards } from '../../actions/cardsActions';
+
 import { CardItem } from '../CardItem';
 
-export const CardsList = (props) => {
-  const { cards, likes, handleCardLike, handleCardDelete, isFiltred } = props;
+export const CardsList = () => {
+  const dispatch = useDispatch();
+
+  const cardsList = useSelector((cardsList) => cardsList.cards.cardsList);
+  const likes = useSelector((cardsList) => cardsList.cards.likesList);
+  const status = useSelector((cardsList) => cardsList.cards.isFilter);
+
+  useEffect(() => {
+    dispatch(fetchCards());
+  }, []);
 
   return (
     <main className="cards-list">
-      {cards.map((card) => {
-        const cardLiked = likes.filter((cardLiked) => cardLiked === card.id)[0];
-        if (isFiltred && cardLiked) {
+      {cardsList.map((cardItem) => {
+        const cardLiked = likes.filter(
+          (cardLikedId) => cardLikedId === cardItem.id
+        )[0];
+
+        if (status && cardLiked) {
           return (
-            <CardItem
-              key={card.id}
-              card={card}
-              like={cardLiked}
-              handleCardLike={handleCardLike}
-              handleCardDelete={handleCardDelete}
-            />
+            <CardItem key={cardItem.id} cardItem={cardItem} like={cardLiked} />
           );
-        } else if (isFiltred === false) {
+        } else if (status === false) {
           return (
-            <CardItem
-              key={card.id}
-              card={card}
-              like={cardLiked}
-              handleCardLike={handleCardLike}
-              handleCardDelete={handleCardDelete}
-            />
+            <CardItem key={cardItem.id} cardItem={cardItem} like={cardLiked} />
           );
         }
       })}
