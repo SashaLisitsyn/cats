@@ -3,8 +3,8 @@ import './styles.css';
 export const CardItem = (props) => {
   const { card, like, handleCardLike, handleCardDelete } = props;
 
-  const cardLikeButtonClassName = `card__like ${
-    like ? 'card__like_active' : ''
+  const cardLikeButtonClassName = `card-item__like ${
+    like ? 'card-item__like_active' : ''
   }`;
 
   const handleLikeClick = () => {
@@ -16,25 +16,25 @@ export const CardItem = (props) => {
   };
 
   return (
-    <div className="card">
+    <div className="card-item">
       <img
-        className="card__photo"
+        className="card-item__photo"
         src={card.urls.regular}
         alt={card.user.name}
       />
       <button
-        className="card__delete"
+        className="card-item__delete"
         type="button"
         onClick={handleDeleteClick}
       ></button>
       <a
-        className="card__user-instagram"
+        className="card-item__user-instagram"
         target="blank"
         href={`https://www.instagram.com/${card.user.social.instagram_username}/`}
       >
         Instagram: {card.user.social.instagram_username}
       </a>
-      <div className="card__description">
+      <div className="card-item__description">
         <button
           className={cardLikeButtonClassName}
           onClick={handleLikeClick}

@@ -1,23 +1,27 @@
-.card {
+.card-item {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 400px;
   border-radius: 10px;
+  border: 1px solid rgba(84, 84, 84, 0.7);
   background-color: #ffffff;
   z-index: 1;
 }
 
-.card__photo {
+.card-item__photo {
   width: 400px;
   height: 400px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   object-fit: cover;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(84, 84, 84, 0.7);
 }
 
-.card__user-instagram {
+.card-item__user-instagram {
   position: absolute;
   margin: 0;
   left: 20px;
@@ -32,11 +36,11 @@
   z-index: 1;
 }
 
-.card__user-instagram:hover {
+.card-item__user-instagram:hover {
   opacity: 0.6;
 }
 
-.card__delete {
+.card-item__delete {
   position: absolute;
   width: 18px;
   height: 19px;
@@ -52,16 +56,16 @@
   z-index: 1;
 }
 
-.card__delete:hover {
+.card-item__delete:hover {
   opacity: 0.6;
 }
 
-.card__description {
+.card-item__description {
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.card__like {
+.card-item__like {
   width: 22px;
   height: 19px;
   margin: 0;
@@ -73,38 +77,38 @@
   background: url(../../images/Like.svg);
 }
 
-.card__like:hover {
+.card-item__like:hover {
   opacity: 0.5;
 }
 
-.card__like_active {
+.card-item__like_active {
   background-image: url(../../images/LikeActive.svg);
 }
 
-.card__like_active:hover {
+.card-item__like_active:hover {
   opacity: 1;
 }
 
 @media screen and (max-width: 920px) {
-  .card {
+  .card-item {
     max-width: 282px;
   }
 
-  .card__photo {
+  .card-item__photo {
     width: 282px;
     height: 282px;
   }
-  .card__delete {
+  .card-item__delete {
     left: 249px;
   }
 
-  .card__user-instagram {
+  .card-item__user-instagram {
     left: 15px;
   }
 }
 
 @media screen and (max-width: 650px) {
-  .card {
+  .card-item {
     margin: 0 auto;
   }
 }

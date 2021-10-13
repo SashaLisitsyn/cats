@@ -1,0 +1,33 @@
+.cards-filter__button {
+  position: fixed;
+  width: 22px;
+  height: 19px;
+  margin: 0;
+  right: 50px;
+  top: 50px;
+  transition: opacity 0.5s linear 0.1s;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  background-image: url(../../images/Like.svg);
+  z-index: 1;
+}
+
+.cards-filter__button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 920px) {
+  .cards-filter__button {
+    top: 10px;
+    right: 5px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .cards-filter__button {
+    top: 5px;
+    right: 1px;
+  }
+}

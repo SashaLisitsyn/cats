@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react';
 
 import { Header } from '../Header';
 import { CardsList } from '../CardsList';
+import { CardsFilter } from '../CardsFiltet';
 import { Footer } from '../Footer';
 
 export const App = () => {
   const [cards, setCards] = useState([]);
   const [likes, setLikes] = useState([]);
+  const [isFiltred, setIsFiltred] = useState(false);
 
   useEffect(() => {
     fetch('https://api.unsplash.com/search/photos?query=cat', {
@@ -35,14 +37,20 @@ export const App = () => {
     setCards((state) => state.filter((cardItem) => cardItem.id !== card.id));
   };
 
+  const handleCardFilter = () => {
+    setIsFiltred(isFiltred ? false : true);
+  };
+
   return (
     <div className="app">
       <Header />
+      <CardsFilter handleCardFilter={handleCardFilter} />
       <CardsList
         cards={cards}
         likes={likes}
         handleCardLike={handleCardLike}
         handleCardDelete={handleCardDelete}
+        isFiltred={isFiltred}
       />
       <Footer />
     </div>
