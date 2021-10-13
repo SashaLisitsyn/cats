@@ -3,11 +3,12 @@ import './styles.css';
 import { useEffect, useState } from 'react';
 
 import { Header } from '../Header';
-import { Cards } from '../Cards';
+import { CardsList } from '../CardsList';
 import { Footer } from '../Footer';
 
 export const App = () => {
   const [cards, setCards] = useState([]);
+  const [likes, setLikes] = useState([]);
 
   useEffect(() => {
     fetch('https://api.unsplash.com/search/photos?query=cat', {
@@ -21,16 +22,28 @@ export const App = () => {
       });
   }, []);
 
-  console.log(cards);
+  const handleCardLike = (card) => {
+    const notExists = !likes.some((cardId) => cardId === card.id);
+    if (notExists) {
+      setLikes((state) => [...state, card.id]);
+    } else {
+      setLikes((state) => state.filter((cardId) => cardId !== card.id));
+    }
+  };
 
   const handleCardDelete = (card) => {
-    setCards((state) => state.filter((c) => c.id !== card.id));
+    setCards((state) => state.filter((cardItem) => cardItem.id !== card.id));
   };
 
   return (
     <div className="app">
       <Header />
-      <Cards cards={cards} handleCardDelete={handleCardDelete} />
+      <CardsList
+        cards={cards}
+        likes={likes}
+        handleCardLike={handleCardLike}
+        handleCardDelete={handleCardDelete}
+      />
       <Footer />
     </div>
   );

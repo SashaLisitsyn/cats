@@ -1,18 +1,14 @@
 import './styles.css';
 
-import { useState } from 'react';
-
-export const Card = ({ card, handleCardDelete }) => {
-  const [currentUser, setCurrentUser] = useState({});
-
-  const isLiked = card.id === currentUser.id;
+export const CardItem = (props) => {
+  const { card, like, handleCardLike, handleCardDelete } = props;
 
   const cardLikeButtonClassName = `card__like ${
-    isLiked ? 'card__like_active' : ''
+    like ? 'card__like_active' : ''
   }`;
 
   const handleLikeClick = () => {
-    isLiked ? setCurrentUser({}) : setCurrentUser(card);
+    handleCardLike(card);
   };
 
   const handleDeleteClick = () => {
